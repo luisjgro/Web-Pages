@@ -28,7 +28,21 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0)
+    const topBar = document.querySelector('.top-bar')
+    const ticker = document.querySelector('.ticker')
+    const nav = document.querySelector('.main-header')
+    if (!topBar || !ticker || !nav) return
+
+    const totalHeight = topBar.offsetHeight
+
+    const onScroll = () => {
+      const offset = Math.max(0, totalHeight - window.scrollY)
+      nav.style.top = offset + 'px'
+      setScrolled(window.scrollY > 0)
+    }
+
+    onScroll()
+
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])

@@ -43,8 +43,10 @@ body.dark-mode .top-bar {
 /* ─── MAIN HEADER ─── */
 .main-header {
   background: #0c615a;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
 }
 .main-header.scrolled {
@@ -318,7 +320,9 @@ body.dark-mode .main-header {
 /* ─── TICKER ─── */
 .ticker {
   background: #094e49;
-
+  position: relative;
+  z-index: 999;
+  margin-top: 56px;
   height: 36px;
   overflow: hidden;
   transition: background-color 0.3s ease, border-color 0.3s ease;
