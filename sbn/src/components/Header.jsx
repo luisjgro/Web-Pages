@@ -1,8 +1,47 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/icono_light.png'
 import './Header.css'
 
-const navItems = ['Hoy', 'Sociedad', 'Ciencia', 'Cultura', 'Medio Ambiente', 'Mundo']
+const navCategories = [
+  { name: 'Inicio', path: '/' },
+  {
+    name: 'Noticias',
+    subcategories: [
+      { name: 'Local', path: '/noticias/local' },
+      { name: 'Estatal', path: '/noticias/estatal' },
+      { name: 'Nacional', path: '/noticias/nacional' },
+      { name: 'Internacional', path: '/noticias/internacional' },
+    ]
+  },
+  {
+    name: 'Ciencia',
+    subcategories: [
+      { name: 'Ciencia y Tecnología', path: '/ciencia/tecnologia' },
+      { name: 'Medicina', path: '/ciencia/medicina' },
+      { name: 'Psicología', path: '/ciencia/psicologia' },
+      { name: 'Medio Ambiente', path: '/ciencia/medio-ambiente' },
+    ]
+  },
+  {
+    name: 'Inspiración',
+    subcategories: [
+      { name: 'Historias que Inspiran', path: '/inspiracion/historias' },
+      { name: 'Héroes de Carne y Hueso', path: '/inspiracion/heroes' },
+      { name: 'Mujeres Talentosas', path: '/inspiracion/mujeres' },
+      { name: 'Entrevistas', path: '/inspiracion/entrevistas' },
+    ]
+  },
+  {
+    name: 'Cultura',
+    subcategories: [
+      { name: 'Cultura', path: '/cultura/cultura' },
+      { name: 'Consejos', path: '/cultura/consejos' },
+      { name: 'Deporte', path: '/cultura/deporte' },
+      { name: 'Economía', path: '/cultura/economia' },
+    ]
+  }
+]
 
 export default function Header() {
   const [isDark, setIsDark] = useState(() => {
@@ -15,7 +54,19 @@ export default function Header() {
     return val
   })
 
+  const { pathname } = useLocation()
+
+  const activeCat = (() => {
+    if (pathname === '/') return 'Inicio'
+    if (pathname.startsWith('/noticias')) return 'Noticias'
+    if (pathname.startsWith('/ciencia')) return 'Ciencia'
+    if (pathname.startsWith('/inspiracion')) return 'Inspiración'
+    if (pathname.startsWith('/cultura')) return 'Cultura'
+    return ''
+  })()
+
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const [dateStr, setDateStr] = useState('')
 
@@ -116,9 +167,25 @@ export default function Header() {
 
           <nav className="main-header__nav" aria-label="Navegación principal">
             <ul>
-              {navItems.map(item => (
-                <li key={item}>
-                  <a href="#" className={item === 'Hoy' ? 'active' : ''}>{item}</a>
+              {navCategories.map(cat => (
+                <li
+                  key={cat.name}
+                  className="nav-item"
+                  onMouseEnter={() => setOpenDropdown(cat.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  {cat.path ? (
+                    <Link to={cat.path} className={`nav-link${activeCat === cat.name ? ' active' : ''}`}>{cat.name}</Link>
+                  ) : (
+                    <a href="#" className={`nav-link${activeCat === cat.name ? ' active' : ''}`}>{cat.name}</a>
+                  )}
+                  {cat.subcategories && (
+                    <div className={`nav-dropdown${openDropdown === cat.name ? ' visible' : ''}`}>
+                      {cat.subcategories.map(sub => (
+                        <Link key={sub.name} to={sub.path} className={`nav-dropdown-link${pathname === sub.path ? ' active' : ''}`}>{sub.name}</Link>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -163,9 +230,13 @@ export default function Header() {
       <div className={`mobile-overlay${menuOpen ? ' active' : ''}`} aria-hidden={!menuOpen}>
         <nav aria-label="Navegación móvil">
           <ul>
-            {navItems.map(item => (
-              <li key={item}>
-                <a href="#" className={item === 'Hoy' ? 'active' : ''} onClick={closeMenu}>{item}</a>
+            {navCategories.map(cat => (
+              <li key={cat.name}>
+                {cat.path ? (
+                  <Link to={cat.path} className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</Link>
+                ) : (
+                  <a href="#" className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</a>
+                )}
               </li>
             ))}
           </ul>

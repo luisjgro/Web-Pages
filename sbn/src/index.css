@@ -15,7 +15,7 @@
 }
 
 body.dark-mode {
-  --primary: #3aad83;
+  --primary: hsl(158, 50%, 45%);
   --primary-hover: #3aad83;
   --accent: #064E3B;
   --bg: #0B1220;

@@ -1,8 +1,10 @@
 import { useRef, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
+import SubPage from './pages/SubPage'
 
-export default function App() {
+function HomePage() {
   const heroRef = useRef(null)
 
   useEffect(() => {
@@ -16,8 +18,6 @@ export default function App() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-
 
   return (
     <>
@@ -92,7 +92,17 @@ export default function App() {
           </div>
         </div>
       </main>
+    </>
+  )
+}
 
+export default function App() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:category/:slug" element={<SubPage />} />
+      </Routes>
       <ScrollToTop />
     </>
   )

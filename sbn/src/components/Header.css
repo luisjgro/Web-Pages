@@ -87,7 +87,7 @@ body.dark-mode .main-header {
   list-style: none;
   gap: 2px;
 }
-.main-header__nav a {
+.main-header__nav .nav-link {
   text-decoration: none;
   color: #ffffff;
   font-size: 0.9rem;
@@ -98,7 +98,7 @@ body.dark-mode .main-header {
   position: relative;
   white-space: nowrap;
 }
-.main-header__nav a::after {
+.main-header__nav .nav-link::after {
   content: '';
   position: absolute;
   bottom: 4px;
@@ -110,22 +110,64 @@ body.dark-mode .main-header {
   border-radius: 1px;
   transition: transform 0.25s ease, background 0.3s ease;
 }
-.main-header__nav a:hover,
-.main-header__nav a:focus-visible {
+.main-header__nav .nav-link:hover,
+.main-header__nav .nav-link:focus-visible {
   background: var(--surface);
   color: var(--primary);
   outline: none;
 }
-.main-header__nav a:hover::after,
-.main-header__nav a:focus-visible::after {
+.main-header__nav .nav-link:hover::after,
+.main-header__nav .nav-link:focus-visible::after {
   transform: translateX(-50%) scaleX(1);
 }
-.main-header__nav a.active {
+.main-header__nav .nav-link.active {
   background: var(--surface);
   color: var(--primary);
 }
-.main-header__nav a.active::after {
+.main-header__nav .nav-link.active::after {
   transform: translateX(-50%) scaleX(1);
+}
+.main-header__nav li.nav-item {
+  position: relative;
+}
+
+/* ─── DROPDOWN ─── */
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: var(--surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  border-top: 3px solid var(--primary);
+  z-index: 2000;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.nav-dropdown.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.nav-dropdown a,
+.nav-dropdown-link {
+  display: block;
+  padding: 10px 20px;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-dropdown a:hover,
+.nav-dropdown-link:hover {
+  background: var(--accent);
+  color: var(--primary);
 }
 
 /* Search + Subscribe + Theme Toggle */
@@ -491,7 +533,9 @@ body.dark-mode .ticker__track span {
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .main-header__nav a {
+  .main-header__nav .nav-link,
+  .nav-dropdown a,
+  .nav-dropdown-link {
     font-size: 0.8125rem;
     padding: 6px 10px;
   }
