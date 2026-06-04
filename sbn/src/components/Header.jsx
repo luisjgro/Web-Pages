@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { allArticles } from '../data/articles'
 import logo from '../assets/icono_light.png'
 import './Header.css'
 
@@ -7,6 +8,7 @@ const navCategories = [
   { name: 'Inicio', path: '/' },
   {
     name: 'Noticias',
+    path: '/noticias',
     subcategories: [
       { name: 'Local', path: '/noticias/local' },
       { name: 'Estatal', path: '/noticias/estatal' },
@@ -16,6 +18,7 @@ const navCategories = [
   },
   {
     name: 'Ciencia',
+    path: '/ciencia',
     subcategories: [
       { name: 'Ciencia y Tecnología', path: '/ciencia/tecnologia' },
       { name: 'Medicina', path: '/ciencia/medicina' },
@@ -25,6 +28,7 @@ const navCategories = [
   },
   {
     name: 'Inspiración',
+    path: '/inspiracion',
     subcategories: [
       { name: 'Historias que Inspiran', path: '/inspiracion/historias' },
       { name: 'Héroes de Carne y Hueso', path: '/inspiracion/heroes' },
@@ -34,6 +38,7 @@ const navCategories = [
   },
   {
     name: 'Cultura',
+    path: '/cultura',
     subcategories: [
       { name: 'Cultura', path: '/cultura/cultura' },
       { name: 'Consejos', path: '/cultura/consejos' },
@@ -69,6 +74,21 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const [dateStr, setDateStr] = useState('')
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const [notifOpen, setNotifOpen] = useState(false)
+  const searchRef = useRef(null)
+
+  const results = useMemo(() => {
+    if (!query.trim()) return []
+    const normalize = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    const q = normalize(query)
+    return allArticles.filter(a => {
+      return normalize(a.title).includes(q) ||
+             normalize(a.category).includes(q) ||
+             normalize(a.excerpt).includes(q)
+    }).slice(0, 5)
+  }, [query])
 
   useEffect(() => {
     const now = new Date()
@@ -107,21 +127,37 @@ export default function Header() {
   }, [isDark])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = (menuOpen || notifOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  }, [menuOpen, notifOpen])
 
   useEffect(() => {
-    if (!menuOpen) return
+    if (!menuOpen && !notifOpen) return
     function onKeyDown(e) {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') { setMenuOpen(false); setNotifOpen(false) }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [menuOpen])
+  }, [menuOpen, notifOpen])
+
+  useEffect(() => {
+    if (!searchOpen) return
+    function handleClick(e) {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false)
+        setQuery('')
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [searchOpen])
 
   const toggleTheme = () => setIsDark(p => !p)
   const closeMenu = () => setMenuOpen(false)
+  const openSearch = () => setSearchOpen(p => !p)
+  const closeNotif = useCallback(() => setNotifOpen(false), [])
+
+  const showDropdown = searchOpen && query.trim()
 
   return (
     <header className="site-header">
@@ -192,12 +228,44 @@ export default function Header() {
           </nav>
 
           <div className="main-header__actions">
-            <button className="search-btn" aria-label="Buscar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="M21 21l-4.35-4.35"/>
-              </svg>
-            </button>
+            <div className="search-wrapper" ref={searchRef}>
+              <input
+                type="text"
+                className={`search-input${searchOpen ? ' open' : ''}`}
+                placeholder="Buscar noticias..."
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Escape') { setSearchOpen(false); setQuery('') } }}
+              />
+              <button className="search-btn" aria-label="Buscar" onClick={openSearch}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </button>
+              {showDropdown && (
+                <div className="search-dropdown">
+                  {results.length > 0 ? (
+                    results.map(r => (
+                      <Link
+                        key={r.slug}
+                        to={`/articulo/${r.slug}`}
+                        className="search-dropdown__item"
+                        onClick={() => { setSearchOpen(false); setQuery('') }}
+                      >
+                        <img className="search-dropdown__img" src={`https://picsum.photos/40/40?random=${r.img}`} alt="" loading="lazy" />
+                        <div className="search-dropdown__info">
+                          <span className="search-dropdown__title">{r.title}</span>
+                          <span className="search-dropdown__category">{r.category}</span>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="search-dropdown__empty">No se encontraron noticias</div>
+                  )}
+                </div>
+              )}
+            </div>
             <button
               className={`theme-toggle${isDark ? ' dark' : ''}`}
               role="switch"
@@ -211,7 +279,7 @@ export default function Header() {
                 <span className="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">🌙</span>
               </span>
             </button>
-            <a href="#" className="btn btn--primary">Suscribirse</a>
+            <button className="notif-btn" onClick={() => setNotifOpen(true)}>🔔 Notificaciones</button>
           </div>
 
           <button
@@ -241,10 +309,23 @@ export default function Header() {
             ))}
           </ul>
           <div className="mobile-cta">
-            <a href="#" className="btn btn--primary" onClick={closeMenu}>Suscribirse</a>
+            <button className="notif-btn" onClick={() => { closeMenu(); setNotifOpen(true) }}>🔔 Notificaciones</button>
           </div>
         </nav>
       </div>
+
+      {notifOpen && (
+        <div className="notif-overlay" onClick={closeNotif}>
+          <div className="notif-modal" onClick={e => e.stopPropagation()}>
+            <button className="notif-modal__close" onClick={closeNotif} aria-label="Cerrar">✕</button>
+            <div className="notif-modal__icon">🔔</div>
+            <h2 className="notif-modal__title">Activa las notificaciones</h2>
+            <p className="notif-modal__desc">Pronto podrás recibir alertas de las mejores noticias del día directamente en tu dispositivo.</p>
+            <span className="notif-modal__badge">Próximamente</span>
+            <button className="notif-modal__action" onClick={closeNotif}>Entendido</button>
+          </div>
+        </div>
+      )}
 
       <div className="ticker">
         <div className="container">

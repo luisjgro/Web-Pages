@@ -1,11 +1,68 @@
 import { useRef, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import AnimatedCard from './components/AnimatedCard'
 import SubPage from './pages/SubPage'
+import NotFound from './pages/NotFound'
+import CategoryPage from './pages/CategoryPage'
+import ArticlePage from './pages/ArticlePage'
+import {
+  getArticleBySlug, featuredSlug, featuredSideSlugs,
+  homeArticleSlugs, noticiasArticleSlugs, cienciaArticleSlugs,
+  inspiracionArticleSlugs, culturaArticleSlugs
+} from './data/articles'
+
+function renderArticleCard(a, i = 0) {
+  return (
+    <AnimatedCard key={a.slug} index={i}>
+      <article className="article-card">
+        <Link to={`/articulo/${a.slug}`} className="article-card__link">
+          <div className="article-card__image-wrap">
+            <img className="article-card__image" src={`https://picsum.photos/400/250?random=${a.img}`} alt="" loading="lazy" />
+            <span className="article-card__badge">{a.badge}</span>
+          </div>
+          <div className="article-card__body">
+            <div className="article-card__category">{a.category}</div>
+            <h3 className="article-card__title">{a.title}</h3>
+            <p className="article-card__excerpt">{a.excerpt}</p>
+            <div className="article-card__footer">
+              <span>👤 {a.author}</span>
+              <span>📅 {a.date}</span>
+              <span>⏱ {a.time} de lectura</span>
+            </div>
+          </div>
+        </Link>
+      </article>
+    </AnimatedCard>
+  )
+}
+
+function renderSection(title, linkTo, slugs, alt) {
+  return (
+    <section className={`cat-section${alt ? ' cat-section--alt' : ''}`} key={linkTo}>
+      <div className="container">
+        <div className="cat-section__header">
+          <h2 className="cat-section__title">{title}</h2>
+          <Link to={`/${linkTo}`} className="cat-section__link">Ver todo →</Link>
+        </div>
+        <div className="cat-section__grid">
+          {slugs.map((slug, i) => {
+            const a = getArticleBySlug(slug)
+            return a ? renderArticleCard(a, i) : null
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function HomePage() {
   const heroRef = useRef(null)
+  const featured = getArticleBySlug(featuredSlug)
+  const sideA = getArticleBySlug(featuredSideSlugs[0])
+  const sideB = getArticleBySlug(featuredSideSlugs[1])
 
   useEffect(() => {
     const el = heroRef.current
@@ -28,69 +85,93 @@ function HomePage() {
           <div className="hero-content">
             <h1>El mundo <em>también</em> tiene historias que valen la pena</h1>
             <p>Creado para dar a conocer noticias que construyen, inspiran y sanan, a través de historias que te reconcilian con el mundo…¡¡ Y porque lo bueno también merece portada!!</p>
+            <div className="hero-cta">
+              <Link to="/noticias/local" className="hero-btn hero-btn--primary">Explorar noticias</Link>
+              <Link to="/nosotros" className="hero-btn hero-btn--outline">Conoce nuestra misión</Link>
+            </div>
             <div className="hero-divider"></div>
           </div>
         </section>
 
+        {featured && (
+          <section className="featured-section">
+            <div className="container">
+              <h2 className="featured-section__title">✦ Noticia del Día</h2>
+              <div className="featured-grid">
+                <AnimatedCard index={0}>
+                <article className="featured-main">
+                  <Link to={`/articulo/${featured.slug}`} className="featured-main__link">
+                    <div className="featured-main__image-wrap">
+                      <img className="featured-main__image" src="https://picsum.photos/800/450?random=10" alt="" loading="lazy" />
+                      <span className="featured-main__badge">DESTACADO</span>
+                    </div>
+                    <div className="featured-main__body">
+                      <div className="featured-main__category">{featured.category}</div>
+                      <h3 className="featured-main__title">{featured.title}</h3>
+                      <p className="featured-main__excerpt">{featured.excerpt}</p>
+                      <div className="featured-main__footer">
+                        <span>👤 {featured.author}</span>
+                        <span>📅 {featured.date}</span>
+                        <span>⏱ {featured.time} de lectura</span>
+                      </div>
+                      <span className="featured-main__cta">Leer más</span>
+                    </div>
+                  </Link>
+                </article>
+                </AnimatedCard>
+                <div className="featured-side">
+                  {sideA && (
+                    <AnimatedCard index={1}>
+                    <article className="featured-side__card">
+                      <Link to={`/articulo/${sideA.slug}`} className="featured-side__link">
+                        <div className="featured-side__image-wrap">
+                          <img className="featured-side__image" src={`https://picsum.photos/400/200?random=11`} alt="" loading="lazy" />
+                        </div>
+                        <div className="featured-side__body">
+                          <div className="featured-side__category">{sideA.category}</div>
+                          <h3 className="featured-side__title">{sideA.title}</h3>
+                          <span className="featured-side__date">📅 {sideA.date}</span>
+                        </div>
+                      </Link>
+                    </article>
+                    </AnimatedCard>
+                  )}
+                  {sideB && (
+                    <AnimatedCard index={2}>
+                    <article className="featured-side__card">
+                      <Link to={`/articulo/${sideB.slug}`} className="featured-side__link">
+                        <div className="featured-side__image-wrap">
+                          <img className="featured-side__image" src={`https://picsum.photos/400/200?random=12`} alt="" loading="lazy" />
+                        </div>
+                        <div className="featured-side__body">
+                          <div className="featured-side__category">{sideB.category}</div>
+                          <h3 className="featured-side__title">{sideB.title}</h3>
+                          <span className="featured-side__date">📅 {sideB.date}</span>
+                        </div>
+                      </Link>
+                    </article>
+                    </AnimatedCard>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         <div className="container">
           <h2 className="section-title">Hoy destacamos</h2>
           <div className="articles-grid">
-            <article className="article-card">
-              <div className="article-card__image">🌱</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Medio Ambiente</div>
-                <h3 className="article-card__title">Comunidad costera logra reforestar 50 kilómetros de manglares</h3>
-                <p className="article-card__excerpt">Más de 2.000 voluntarios participaron en la iniciativa que devolvió la vida a ecosistemas clave para la biodiversidad y la protección contra tormentas.</p>
-                <div className="article-card__meta">28 de mayo, 2026 — 4 min de lectura</div>
-              </div>
-            </article>
-            <article className="article-card">
-              <div className="article-card__image">🔬</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Ciencia</div>
-                <h3 className="article-card__title">Nueva batería de origen vegetal promete energía limpia y accesible</h3>
-                <p className="article-card__excerpt">Investigadores desarrollan una batería biodegradable a base de celulosa que podría reemplazar las baterías de litio en dispositivos de bajo consumo.</p>
-                <div className="article-card__meta">26 de mayo, 2026 — 6 min de lectura</div>
-              </div>
-            </article>
-            <article className="article-card">
-              <div className="article-card__image">📚</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Cultura</div>
-                <h3 className="article-card__title">Bibliotecas móviles llevan lectura a comunidades rurales del país</h3>
-                <p className="article-card__excerpt">Un programa de bibliotecas itinerantes ha logrado que más de 15.000 niños y adultos tengan acceso a libros en zonas donde antes no llegaba ningún servicio de lectura.</p>
-                <div className="article-card__meta">24 de mayo, 2026 — 3 min de lectura</div>
-              </div>
-            </article>
-            <article className="article-card">
-              <div className="article-card__image">🤝</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Sociedad</div>
-                <h3 className="article-card__title">Programa de mentoría reduce brecha educativa en 40%</h3>
-                <p className="article-card__excerpt">Estudiantes de secundaria que participaron en el programa de mentoría mostraron mejoras significativas en matemáticas y comprensión lectora en solo un año.</p>
-                <div className="article-card__meta">22 de mayo, 2026 — 5 min de lectura</div>
-              </div>
-            </article>
-            <article className="article-card">
-              <div className="article-card__image">🌍</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Mundo</div>
-                <h3 className="article-card__title">Acuerdo histórico: 50 países se comprometen a eliminar plásticos de un solo uso</h3>
-                <p className="article-card__excerpt">El tratado, firmado en la cumbre de Ottawa, establece metas vinculantes para la reducción progresiva de plásticos con un horizonte de 2030.</p>
-                <div className="article-card__meta">20 de mayo, 2026 — 4 min de lectura</div>
-              </div>
-            </article>
-            <article className="article-card">
-              <div className="article-card__image">🏥</div>
-              <div className="article-card__body">
-                <div className="article-card__category">Sociedad</div>
-                <h3 className="article-card__title">Hospital público implementa modelo de atención que reduce esperas un 60%</h3>
-                <p className="article-card__excerpt">El nuevo sistema de triaje inteligente y citas digitales ha transformado la experiencia de miles de pacientes en el sistema de salud pública.</p>
-                <div className="article-card__meta">18 de mayo, 2026 — 7 min de lectura</div>
-              </div>
-            </article>
+            {homeArticleSlugs.map((slug, i) => {
+              const a = getArticleBySlug(slug)
+              return a ? renderArticleCard(a, i) : null
+            })}
           </div>
         </div>
+
+        {renderSection('Últimas de Noticias', 'noticias', noticiasArticleSlugs, true)}
+        {renderSection('Últimas de Ciencia', 'ciencia', cienciaArticleSlugs, false)}
+        {renderSection('Últimas de Inspiración', 'inspiracion', inspiracionArticleSlugs, true)}
+        {renderSection('Últimas de Cultura', 'cultura', culturaArticleSlugs, false)}
       </main>
     </>
   )
@@ -101,8 +182,15 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/noticias" element={<CategoryPage />} />
+        <Route path="/ciencia" element={<CategoryPage />} />
+        <Route path="/inspiracion" element={<CategoryPage />} />
+        <Route path="/cultura" element={<CategoryPage />} />
+        <Route path="/articulo/:slug" element={<ArticlePage />} />
         <Route path="/:category/:slug" element={<SubPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
       <ScrollToTop />
     </>
   )

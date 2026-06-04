@@ -1,7 +1,11 @@
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
+import Pagination from '../components/Pagination'
+import AnimatedCard from '../components/AnimatedCard'
+import { getArticlesByBadge } from '../data/articles'
 import './SubPage.css'
 
 const titles = {
@@ -28,9 +32,28 @@ export default function SubPage() {
   const key = `${category}/${slug}`
   const title = titles[key] || 'Categoría'
 
+  const [page, setPage] = useState(1)
+  const PER_PAGE = 6
+
+  const allArticles = getArticlesByBadge(title)
+  const totalPages = Math.ceil(allArticles.length / PER_PAGE)
+  const currentArticles = allArticles.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+
+  useEffect(() => {
+    setPage(1)
+  }, [key])
+
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [key])
+  }, [key, page])
+
+  const categoryNames = {
+    noticias: 'Noticias',
+    ciencia: 'Ciencia',
+    inspiracion: 'Inspiración',
+    cultura: 'Cultura',
+  }
+  const categoryName = categoryNames[category] || 'Categoría'
 
   return (
     <>
@@ -40,10 +63,45 @@ export default function SubPage() {
           <div className="subpage-hero__content">
             <h1>{title}</h1>
             <div className="subpage-hero__divider" />
-            <p className="subpage-hero__placeholder">Contenido próximamente...</p>
           </div>
         </section>
+
+        <div className="container">
+          {currentArticles.length > 0 ? (
+            <>
+              <Link to={`/${category}`} className="subpage-back-btn">← Volver a {categoryName}</Link>
+              <div className="subpage-grid" style={{ paddingBottom: totalPages <= 1 ? '80px' : '24px' }}>
+                {currentArticles.map((article, i) => (
+                  <AnimatedCard key={article.slug} index={i}>
+                    <article className="article-card">
+                      <Link to={`/articulo/${article.slug}`} className="article-card__link">
+                        <div className="article-card__image-wrap">
+                          <img className="article-card__image" src={`https://picsum.photos/400/250?random=${article.img}`} alt="" loading="lazy" />
+                          <span className="article-card__badge">{title}</span>
+                        </div>
+                        <div className="article-card__body">
+                          <div className="article-card__category">{title}</div>
+                          <h3 className="article-card__title">{article.title}</h3>
+                          <p className="article-card__excerpt">{article.excerpt}</p>
+                          <div className="article-card__footer">
+                            <span>👤 {article.author}</span>
+                            <span>📅 {article.date}</span>
+                            <span>⏱ {article.time} de lectura</span>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  </AnimatedCard>
+                ))}
+              </div>
+              <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+            </>
+          ) : (
+            <p className="subpage-hero__placeholder">Contenido próximamente...</p>
+          )}
+        </div>
       </main>
+      <Footer />
       <ScrollToTop />
     </>
   )

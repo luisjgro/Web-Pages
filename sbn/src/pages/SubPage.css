@@ -40,6 +40,41 @@
   transition: color 0.3s ease;
 }
 
+.subpage-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: 1px solid var(--primary);
+  border-radius: 50px;
+  background: var(--surface);
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.subpage-back-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.subpage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 40px 0 0;
+}
+
+@media (max-width: 1023px) {
+  .subpage-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 767px) {
   .subpage-hero {
     padding: 56px 16px 48px;
