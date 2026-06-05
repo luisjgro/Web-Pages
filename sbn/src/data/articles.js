@@ -27,7 +27,7 @@ export const allArticles = [
   make({
     title: 'Científicos desarrollan un método revolucionario para limpiar los océanos en una década',
     excerpt: 'Un equipo internacional de investigadores ha presentado un innovador sistema de nanopartículas magnéticas capaz de absorber microplásticos del agua de mar de manera eficiente y económica. El método, que ya se ha probado con éxito en el Pacífico, promete eliminar hasta el 90% de los residuos plásticos en los próximos diez años sin dañar la vida marina.',
-    img: 10, badge: 'DESTACADO', category: 'Ciencia', author: 'Mariana Rojas', date: '4 jun 2026', time: '8 min',
+    img: 10, badge: 'DESTACADO', category: 'Ciencia', mainCategory: 'Ciencia', subCategory: 'Medio Ambiente', author: 'Mariana Rojas', date: '4 jun 2026', time: '8 min',
     p1: 'En un laboratorio de la Universidad Nacional Autónoma de México, un equipo de científicos ha logrado lo que parecía imposible: desarrollar un método capaz de limpiar los océanos de microplásticos en tiempo récord. Las nanopartículas magnéticas, diseñadas durante cinco años de investigación, tienen la capacidad de atraer y absorber partículas plásticas de hasta 5 micras sin afectar a la fauna marina.',
   }),
 
@@ -35,37 +35,37 @@ export const allArticles = [
   make({
     title: 'Comunidad costera logra reforestar 50 kilómetros de manglares',
     excerpt: 'Más de 2.000 voluntarios participaron en la iniciativa que devolvió la vida a ecosistemas clave para la biodiversidad y la protección contra tormentas.',
-    img: 1, badge: 'Medio Ambiente', category: 'Medio Ambiente', author: 'Mariana Rojas', date: '28 may 2026', time: '4 min',
+    img: 1, badge: 'Medio Ambiente', category: 'Medio Ambiente', mainCategory: 'Ciencia', subCategory: 'Medio Ambiente', author: 'Mariana Rojas', date: '28 may 2026', time: '4 min',
     p1: 'Lo que comenzó como un pequeño grupo de vecinos preocupados por la erosión de la costa se transformó en un movimiento masivo que logró reforestar 50 kilómetros de manglares en el Golfo de México. Durante seis meses, más de 2.000 voluntarios de todas las edades plantaron miles de propágulos de mangle rojo, blanco y negro en áreas que habían sido devastadas por la tala ilegal y el desarrollo turístico.',
   }),
   make({
     title: 'Científicos crean un dispositivo portátil que detecta enfermedades en segundos',
     excerpt: 'El innovador biosensor, del tamaño de una moneda, analiza una gota de sangre y diagnostica hasta 15 condiciones diferentes con una precisión del 98%.',
-    img: 2, badge: 'Ciencia', category: 'Ciencia', author: 'Dr. Andrés Guerra', date: '26 may 2026', time: '6 min',
+    img: 2, badge: 'Ciencia', category: 'Ciencia', mainCategory: 'Ciencia', subCategory: 'Ciencia y Tecnología', author: 'Dr. Andrés Guerra', date: '26 may 2026', time: '6 min',
     p1: 'Un equipo de bioingenieros ha desarrollado un dispositivo del tamaño de una moneda que puede diagnosticar hasta 15 enfermedades diferentes en cuestión de segundos. El biosensor, que funciona con una sola gota de sangre, utiliza inteligencia artificial para analizar biomarcadores y detectar condiciones como diabetes, infecciones virales y marcadores tempranos de cáncer.',
   }),
   make({
     title: 'Joven emprendedora crea app que conecta voluntarios con causas sociales',
     excerpt: 'La plataforma ya ha movilizado a más de 10.000 voluntarios en 20 países, facilitando la colaboración en proyectos de educación, salud y medio ambiente.',
-    img: 3, badge: 'Inspiración', category: 'Inspiración', author: 'Sofía Mendoza', date: '24 may 2026', time: '3 min',
+    img: 3, badge: 'Inspiración', category: 'Inspiración', mainCategory: 'Inspiración', subCategory: 'Historias que Inspiran', author: 'Sofía Mendoza', date: '24 may 2026', time: '3 min',
     p1: 'A sus 24 años, Marina Torres lanzó una aplicación que está transformando la manera en que las personas se conectan con causas sociales. ConectaVoluntarios permite a usuarios encontrar proyectos cercanos que necesiten apoyo, desde clases de alfabetización hasta jornadas de limpieza de playas, y ya cuenta con más de 10.000 voluntarios registrados en 20 países.',
   }),
   make({
     title: 'Programa de mentoría reduce brecha educativa en zonas rurales',
     excerpt: 'Más de 5.000 estudiantes de comunidades rurales mejoraron su rendimiento académico gracias a un programa de tutorías virtuales con profesionales voluntarios.',
-    img: 4, badge: 'Sociedad', category: 'Sociedad', author: 'Carlos Huerta', date: '22 may 2026', time: '5 min',
+    img: 4, badge: 'Sociedad', category: 'Sociedad', mainCategory: 'Noticias', subCategory: 'Local', author: 'Carlos Huerta', date: '22 may 2026', time: '5 min',
     p1: 'La brecha educativa entre zonas urbanas y rurales ha comenzado a cerrarse gracias a un innovador programa de mentorías virtuales. Más de 5.000 estudiantes de comunidades apartadas reciben tutorías personalizadas de profesionales voluntarios en áreas como matemáticas, ciencias y lenguas extranjeras, con resultados que han superado todas las expectativas.',
   }),
   make({
     title: 'Bibliotecas móviles llevan lectura a comunidades sin acceso a libros',
     excerpt: 'Un programa de bibliotecas itinerantes ha logrado que más de 15.000 niños y adultos tengan acceso a libros en zonas donde antes no llegaba ningún servicio de lectura.',
-    img: 5, badge: 'Cultura', category: 'Cultura', author: 'Laura Jiménez', date: '20 may 2026', time: '3 min',
+    img: 5, badge: 'Cultura', category: 'Cultura', mainCategory: 'Cultura', subCategory: 'Cultura', author: 'Laura Jiménez', date: '20 may 2026', time: '3 min',
     p1: 'En comunidades donde el acceso a libros era prácticamente inexistente, las bibliotecas móviles están escribiendo una nueva historia. Un programa impulsado por la Secretaría de Cultura y organizaciones civiles ha desplegado 30 bibliotecas sobre ruedas que recorren comunidades rurales y urbanas marginadas, llevando libros, talleres de lectura y actividades culturales a miles de personas.',
   }),
   make({
     title: 'Hospital público reduce tiempos de espera con nuevo sistema digital',
     excerpt: 'El innovador modelo de triaje inteligente y citas en línea ha transformado la experiencia de miles de pacientes, reduciendo las esperas en un 60%.',
-    img: 6, badge: 'Salud', category: 'Salud', author: 'Dra. Patricia Luna', date: '18 may 2026', time: '7 min',
+    img: 6, badge: 'Salud', category: 'Salud', mainCategory: 'Ciencia', subCategory: 'Medicina', author: 'Dra. Patricia Luna', date: '18 may 2026', time: '7 min',
     p1: 'Un hospital público de la ciudad de México ha logrado reducir los tiempos de espera en un 60% gracias a la implementación de un sistema de triaje inteligente basado en inteligencia artificial. El sistema, desarrollado por ingenieros mexicanos, prioriza a los pacientes según la gravedad de su condición y optimiza la asignación de recursos médicos en tiempo real.',
   }),
 
@@ -73,13 +73,13 @@ export const allArticles = [
   make({
     title: 'Anuncian programa de becas para estudiantes de comunidades indígenas',
     excerpt: 'El gobierno estatal destinará más de 50 millones de pesos para apoyar a jóvenes de comunidades indígenas que deseen cursar estudios universitarios en el próximo ciclo escolar.',
-    img: 21, badge: 'Estatal', category: 'Estatal', author: 'Redacción SBN', date: '2 jun 2026', time: '3 min',
+    img: 21, badge: 'Estatal', category: 'Estatal', mainCategory: 'Noticias', subCategory: 'Estatal', author: 'Redacción SBN', date: '2 jun 2026', time: '3 min',
     p1: 'El gobierno del estado anunció un programa de becas integrales para estudiantes de comunidades indígenas que deseen cursar estudios universitarios. Con una inversión de más de 50 millones de pesos, el programa cubrirá no solo la colegiatura sino también transporte, alimentación y materiales de estudio durante toda la carrera.',
   }),
   make({
     title: 'Inicia campaña nacional de reforestación con meta de 10 millones de árboles',
     excerpt: 'La iniciativa, impulsada por organizaciones civiles y el gobierno federal, busca restaurar áreas afectadas por la deforestación y generar empleos verdes en 15 estados del país.',
-    img: 22, badge: 'Nacional', category: 'Nacional', author: 'Redacción SBN', date: '1 jun 2026', time: '5 min',
+    img: 22, badge: 'Nacional', category: 'Nacional', mainCategory: 'Noticias', subCategory: 'Nacional', author: 'Redacción SBN', date: '1 jun 2026', time: '5 min',
     p1: 'Una ambiciosa campaña nacional de reforestación se puso en marcha con la meta de plantar 10 millones de árboles en 15 estados del país. La iniciativa, que combina esfuerzos del gobierno federal, organizaciones civiles y empresas privadas, busca restaurar ecosistemas dañados por la deforestación y generar miles de empleos verdes en comunidades rurales.',
   }),
 
@@ -87,19 +87,19 @@ export const allArticles = [
   make({
     title: 'Inteligencia artificial ayuda a diagnosticar enfermedades raras en niños',
     excerpt: 'Un nuevo sistema de IA desarrollado por investigadores mexicanos analiza patrones genéticos y síntomas para identificar enfermedades poco frecuentes con una precisión sin precedentes.',
-    img: 23, badge: 'Tecnología', category: 'Tecnología', author: 'Dr. Andrés Guerra', date: '30 may 2026', time: '6 min',
+    img: 23, badge: 'Tecnología', category: 'Tecnología', mainCategory: 'Ciencia', subCategory: 'Ciencia y Tecnología', author: 'Dr. Andrés Guerra', date: '30 may 2026', time: '6 min',
     p1: 'Investigadores mexicanos han desarrollado un sistema de inteligencia artificial capaz de diagnosticar enfermedades raras en niños analizando patrones genéticos y síntomas clínicos. La herramienta, entrenada con miles de casos clínicos, ha demostrado una precisión del 95% en la identificación de condiciones que normalmente tardan años en diagnosticarse.',
   }),
   make({
     title: 'Nueva terapia génica revierte la ceguera en pacientes con enfermedad hereditaria',
     excerpt: 'El tratamiento, aplicado por primera vez en América Latina, ha devuelto la visión parcial a siete pacientes con amaurosis congénita de Leber, una condición que causa ceguera progresiva.',
-    img: 24, badge: 'Medicina', category: 'Medicina', author: 'Dra. Patricia Luna', date: '29 may 2026', time: '7 min',
+    img: 24, badge: 'Medicina', category: 'Medicina', mainCategory: 'Ciencia', subCategory: 'Medicina', author: 'Dra. Patricia Luna', date: '29 may 2026', time: '7 min',
     p1: 'Siete pacientes que habían perdido la visión debido a una enfermedad hereditaria recuperaron parcialmente la vista gracias a una innovadora terapia génica aplicada por primera vez en América Latina. El tratamiento, desarrollado por investigadores de la UNAM en colaboración con centros médicos internacionales, corrige el gen defectuoso responsable de la amaurosis congénita de Leber.',
   }),
   make({
     title: 'Innovador sistema de riego reduce el consumo de agua en un 70%',
     excerpt: 'El sistema, basado en sensores de humedad e inteligencia artificial, optimiza el uso del agua en cultivos de zonas áridas y ya se ha implementado con éxito en cinco estados del norte.',
-    img: 25, badge: 'Medio Ambiente', category: 'Medio Ambiente', author: 'Mariana Rojas', date: '28 may 2026', time: '4 min',
+    img: 25, badge: 'Medio Ambiente', category: 'Medio Ambiente', mainCategory: 'Ciencia', subCategory: 'Medio Ambiente', author: 'Mariana Rojas', date: '28 may 2026', time: '4 min',
     p1: 'En un país donde el agua es un recurso cada vez más escaso, un nuevo sistema de riego inteligente promete revolucionar la agricultura en zonas áridas. El sistema, que combina sensores de humedad del suelo con algoritmos de inteligencia artificial, reduce el consumo de agua en un 70% sin comprometer la productividad de los cultivos.',
   }),
 
@@ -107,19 +107,19 @@ export const allArticles = [
   make({
     title: 'De vendedor ambulante a ingeniero: la historia de superación de José María',
     excerpt: 'Con tan solo la educación básica y una determinación inquebrantable, José María logró titularse como ingeniero de software a los 42 años, demostrando que nunca es tarde para cumplir los sueños.',
-    img: 26, badge: 'Historias', category: 'Historias que Inspiran', author: 'Sofía Mendoza', date: '27 may 2026', time: '5 min',
+    img: 26, badge: 'Historias', category: 'Historias que Inspiran', mainCategory: 'Inspiración', subCategory: 'Historias que Inspiran', author: 'Sofía Mendoza', date: '27 may 2026', time: '5 min',
     p1: 'A los 35 años, José María vendía dulces en los semáforos para mantener a su familia. Siete años después, con su título de ingeniero de software en mano, demuestra que la perseverancia puede vencer cualquier obstáculo. Su historia, que ha inspirado a miles, comenzó cuando decidió tomar clases nocturnas de computación mientras seguía trabajando en las calles.',
   }),
   make({
     title: 'Maestra rural recorre 20 km diarios para llevar educación a niños de la montaña',
     excerpt: 'A pesar de las condiciones adversas y el terreno accidentado, la profesora Elena García no ha faltado un solo día a su escuela, donde 30 niños aprenden con la esperanza de un futuro mejor.',
-    img: 27, badge: 'Héroes', category: 'Héroes de Carne y Hueso', author: 'Carlos Huerta', date: '26 may 2026', time: '4 min',
+    img: 27, badge: 'Héroes', category: 'Héroes de Carne y Hueso', mainCategory: 'Inspiración', subCategory: 'Héroes de Carne y Hueso', author: 'Carlos Huerta', date: '26 may 2026', time: '4 min',
     p1: 'Todos los días, antes de que salga el sol, la profesora Elena García emprende un viaje de 20 kilómetros a pie y en transporte público para llegar a su escuela en lo alto de la montaña. Allí la esperan 30 niños que, gracias a su dedicación inquebrantable, tienen la oportunidad de aprender y soñar con un futuro mejor.',
   }),
   make({
     title: 'Científica mexicana gana premio internacional por su trabajo en energías limpias',
     excerpt: 'La doctora Valeria Campos fue reconocida por desarrollar un panel solar biodegradable de bajo costo que podría llevar electricidad a comunidades sin acceso a la red eléctrica.',
-    img: 28, badge: 'Mujeres', category: 'Mujeres Talentosas', author: 'Redacción SBN', date: '25 may 2026', time: '3 min',
+    img: 28, badge: 'Mujeres', category: 'Mujeres Talentosas', mainCategory: 'Inspiración', subCategory: 'Mujeres Talentosas', author: 'Redacción SBN', date: '25 may 2026', time: '3 min',
     p1: 'La doctora Valeria Campos, investigadora del Instituto de Energías Renovables, ha sido galardonada con el prestigioso Premio Mundial de Energía Limpia por el desarrollo de un panel solar biodegradable de bajo costo. Su innovación promete llevar electricidad a millones de personas en comunidades que aún no tienen acceso a la red eléctrica.',
   }),
 
@@ -127,13 +127,13 @@ export const allArticles = [
   make({
     title: 'Festival de cine documental llega a comunidades indígenas del país',
     excerpt: 'El festival itinerante proyectará más de 40 documentales en 12 comunidades indígenas, con entrada gratuita y talleres de realización cinematográfica para jóvenes.',
-    img: 29, badge: 'Cultura', category: 'Cultura', author: 'Laura Jiménez', date: '24 may 2026', time: '4 min',
+    img: 29, badge: 'Cultura', category: 'Cultura', mainCategory: 'Cultura', subCategory: 'Cultura', author: 'Laura Jiménez', date: '24 may 2026', time: '4 min',
     p1: 'El cine documental llegará a comunidades indígenas que nunca antes habían tenido acceso a una sala de proyección. El Festival Itinerante de Cine Documental recorrerá 12 comunidades en seis estados, llevando más de 40 documentales que abordan temas como la identidad cultural, la defensa del territorio y los derechos humanos.',
   }),
   make({
     title: 'Atleta paralímpico rompe récord mundial y inspira a nuevas generaciones',
     excerpt: 'Con una marca de 1:45.3 en los 800 metros planos, el corredor mexicano superó su propio récord y dedicó la victoria a todos los jóvenes que sueñan con superar la adversidad.',
-    img: 31, badge: 'Deporte', category: 'Deporte', author: 'Carlos Huerta', date: '22 may 2026', time: '5 min',
+    img: 31, badge: 'Deporte', category: 'Deporte', mainCategory: 'Cultura', subCategory: 'Deporte', author: 'Carlos Huerta', date: '22 may 2026', time: '5 min',
     p1: 'El atleta paralímpico mexicano Miguel Ángel Hernández volvió a hacer historia al romper su propio récord mundial en los 800 metros planos con un tiempo de 1:45.3. Tras cruzar la meta, dedicó su victoria a todos los jóvenes que enfrentan alguna discapacidad y sueñan con superar la adversidad a través del deporte.',
   }),
 
@@ -141,7 +141,7 @@ export const allArticles = [
   make({
     title: 'Nueva biblioteca pública abre sus puertas con más de 20.000 ejemplares',
     excerpt: 'El recinto cultural, ubicado en el centro de la ciudad, ofrece salas de lectura, talleres gratuitos y un archivo digital con más de 5.000 títulos disponibles.',
-    img: 40, badge: 'Local', category: 'Local', author: 'Redacción SBN', date: '3 jun 2026', time: '4 min',
+    img: 40, badge: 'Local', category: 'Local', mainCategory: 'Noticias', subCategory: 'Local', author: 'Redacción SBN', date: '3 jun 2026', time: '4 min',
     p1: 'La nueva biblioteca pública del centro histórico representa un hito cultural para la ciudad. Con una inversión de 30 millones de pesos, el edificio restaurado ofrece espacios modernos y accesibles para toda la comunidad.',
   }),
   make({
@@ -635,7 +635,7 @@ export const allArticles = [
   make({
     title: 'Cinco hábitos matutinos que transformarán tu productividad',
     excerpt: 'Especialistas en psicología positiva comparten una rutina de 20 minutos que combina meditación, ejercicio y lectura para empezar el día con energía.',
-    img: 118, badge: 'Consejos', category: 'Consejos', author: 'Redacción SBN', date: '23 may 2026', time: '3 min',
+    img: 118, badge: 'Consejos', category: 'Consejos', mainCategory: 'Cultura', subCategory: 'Consejos', author: 'Redacción SBN', date: '23 may 2026', time: '3 min',
     p1: 'Especialistas en psicología positiva han diseñado una rutina matutina de 20 minutos que combina meditación, ejercicio y lectura para maximizar la productividad y el bienestar desde las primeras horas del día.',
   }),
   make({

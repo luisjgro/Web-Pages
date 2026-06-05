@@ -514,6 +514,22 @@ body.dark-mode .featured-main__badge {
   border-radius: 4px;
   z-index: 1;
 }
+.article-card__badge--link {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+.article-card__badge--link:hover {
+  opacity: 0.8;
+}
+.article-card__category--link {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+.article-card__category--link:hover {
+  opacity: 0.7;
+}
 .article-card__body {
   padding: 20px 24px 24px;
 }

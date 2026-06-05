@@ -51,13 +51,7 @@ const navCategories = [
 
 export default function Header() {
   const [isDark, setIsDark] = useState(() => {
-    let val = false
-    try {
-      const saved = localStorage.getItem('sbn-theme')
-      if (saved === 'dark') val = true
-      else if (saved === null && window.matchMedia?.('(prefers-color-scheme: dark)').matches) val = true
-    } catch { /* ignore */ }
-    return val
+    return localStorage.getItem('theme') === 'dark'
   })
 
   const { pathname } = useLocation()
@@ -122,11 +116,8 @@ export default function Header() {
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDark)
-    try {
-      if (isDark) localStorage.setItem('sbn-theme', 'dark')
-      else localStorage.removeItem('sbn-theme')
-    } catch { /* ignore */ }
-  }, [isDark])
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
 
 
 

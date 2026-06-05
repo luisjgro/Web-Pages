@@ -19,6 +19,56 @@ import {
   inspiracionArticleSlugs, culturaArticleSlugs
 } from './data/articles'
 
+const mainCategoryRouteMap = {
+  'Noticias': '/noticias',
+  'Ciencia': '/ciencia',
+  'Inspiración': '/inspiracion',
+  'Cultura': '/cultura',
+}
+
+const subCategoryRouteMap = {
+  'Medio Ambiente': '/ciencia/medio-ambiente',
+  'Ciencia': '/ciencia',
+  'Inspiración': '/inspiracion',
+  'Sociedad': '/noticias/local',
+  'Cultura': '/cultura/cultura',
+  'Salud': '/ciencia/medicina',
+  'Local': '/noticias/local',
+  'Estatal': '/noticias/estatal',
+  'Nacional': '/noticias/nacional',
+  'Internacional': '/noticias/internacional',
+  'Tecnología': '/ciencia/tecnologia',
+  'Ciencia y Tecnología': '/ciencia/tecnologia',
+  'Medicina': '/ciencia/medicina',
+  'Psicología': '/ciencia/psicologia',
+  'Historias': '/inspiracion/historias',
+  'Héroes': '/inspiracion/heroes',
+  'Mujeres': '/inspiracion/mujeres',
+  'Entrevistas': '/inspiracion/entrevistas',
+  'Historias que Inspiran': '/inspiracion/historias',
+  'Héroes de Carne y Hueso': '/inspiracion/heroes',
+  'Mujeres Talentosas': '/inspiracion/mujeres',
+  'Consejos': '/cultura/consejos',
+  'Deporte': '/cultura/deporte',
+  'Economía': '/cultura/economia',
+}
+
+function renderBadge(mainCat) {
+  const route = mainCategoryRouteMap[mainCat]
+  if (route) {
+    return <Link to={route} className="article-card__badge article-card__badge--link" onClick={(e) => e.stopPropagation()}>{mainCat}</Link>
+  }
+  return <span className="article-card__badge">{mainCat}</span>
+}
+
+function renderCategory(subCat) {
+  const route = subCategoryRouteMap[subCat]
+  if (route) {
+    return <Link to={route} className="article-card__category article-card__category--link" onClick={(e) => e.stopPropagation()}>{subCat}</Link>
+  }
+  return <span className="article-card__category">{subCat}</span>
+}
+
 function renderArticleCard(a, i = 0) {
   return (
     <AnimatedCard key={a.slug} index={i}>
@@ -26,10 +76,10 @@ function renderArticleCard(a, i = 0) {
         <Link to={`/articulo/${a.slug}`} className="article-card__link">
           <div className="article-card__image-wrap">
             <img className="article-card__image" src={`https://picsum.photos/400/250?random=${a.img}`} alt="" loading="lazy" />
-            <span className="article-card__badge">{a.badge}</span>
+            {renderBadge(a.mainCategory)}
           </div>
           <div className="article-card__body">
-            <div className="article-card__category">{a.category}</div>
+            {renderCategory(a.subCategory)}
             <h3 className="article-card__title">{a.title}</h3>
             <p className="article-card__excerpt">{a.excerpt}</p>
             <div className="article-card__footer">
