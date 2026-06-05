@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import NotFound from './NotFound'
 import { getArticleBySlug, getRelatedArticles } from '../data/articles'
 import './ArticlePage.css'
@@ -80,7 +79,6 @@ export default function ArticlePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

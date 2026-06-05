@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import AnimatedCard from '../components/AnimatedCard'
 import { getArticlesByBadge } from '../data/articles'
 import './CategoryPage.css'
@@ -106,7 +105,5 @@ export default function CategoryPage() {
           <Link to={`/${category}/${currentSlug}`} className="catpage-btn">Ver más {info.tabs[activeTab]} →</Link>
         </div>
       </main>
-      <Footer />
-    </>
-  )
-}
+    </>)
+  }

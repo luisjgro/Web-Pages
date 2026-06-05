@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
 import Pagination from '../components/Pagination'
 import AnimatedCard from '../components/AnimatedCard'
@@ -101,7 +100,6 @@ export default function SubPage() {
           )}
         </div>
       </main>
-      <Footer />
       <ScrollToTop />
     </>
   )
