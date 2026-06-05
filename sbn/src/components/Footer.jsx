@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-col footer-brand">
             <img src={logo} alt="Solo Buenas Noticias" className="footer-logo" />
-            <p className="footer-tagline">El mundo también tiene historias que valen la pena</p>
+            <p className="footer-tagline">Creado para dar a conocer noticias que construyen, inspiran y sanan, a través de historias que te reconcilian con el mundo…¡¡ Y porque lo bueno también merece portada!!</p>
             <div className="footer-social">
               <a href="https://www.instagram.com/solo_buenas_noticias/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
