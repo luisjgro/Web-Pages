@@ -9,6 +9,10 @@ import SubPage from './pages/SubPage'
 import NotFound from './pages/NotFound'
 import CategoryPage from './pages/CategoryPage'
 import ArticlePage from './pages/ArticlePage'
+import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import {
   getArticleBySlug, featuredSlug, featuredSideSlugs,
   homeArticleSlugs, noticiasArticleSlugs, cienciaArticleSlugs,
@@ -87,7 +91,6 @@ function HomePage() {
         <meta property="og:image" content="/icono_favicon.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      <Header />
 
       <main id="main-content">
         <section className="hero-section" ref={heroRef}>
@@ -189,6 +192,7 @@ function HomePage() {
 export default function App() {
   return (
     <>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/noticias" element={<CategoryPage />} />
@@ -197,6 +201,10 @@ export default function App() {
         <Route path="/cultura" element={<CategoryPage />} />
         <Route path="/articulo/:slug" element={<ArticlePage />} />
         <Route path="/:category/:slug" element={<SubPage />} />
+        <Route path="/nosotros" element={<AboutPage />} />
+        <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/privacidad" element={<PrivacyPage />} />
+        <Route path="/terminos" element={<TermsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

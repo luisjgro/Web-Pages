@@ -61,7 +61,7 @@ export default function Footer() {
             <h4 className="footer-col__title">Contacto</h4>
             <ul className="footer-links footer-contact">
               <li>
-                <a href="mailto:contacto@solobuenasnoticias.com">contacto@solobuenasnoticias.com</a>
+                <a href="mailto:solobuenasnoticias0@gmail.com">solobuenasnoticias0@gmail.com</a>
               </li>
               <li className="footer-location">Chihuahua, México</li>
             </ul>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import Header from '../components/Header'
 import ScrollToTop from '../components/ScrollToTop'
 import Pagination from '../components/Pagination'
 import AnimatedCard from '../components/AnimatedCard'
@@ -67,7 +66,6 @@ export default function SubPage() {
         <meta property="og:image" content="/icono_favicon.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      <Header />
       <main id="main-content">
         <section className="subpage-hero">
           <div className="subpage-hero__content">

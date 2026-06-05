@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import Header from '../components/Header'
 import NotFound from './NotFound'
 import { getArticleBySlug, getRelatedArticles } from '../data/articles'
 import './ArticlePage.css'
@@ -31,7 +30,6 @@ export default function ArticlePage() {
         <meta property="og:image" content="/icono_favicon.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      <Header />
       <main id="main-content">
         <article className="article-page">
           <div className="article-page__container">

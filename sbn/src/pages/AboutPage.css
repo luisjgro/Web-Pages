@@ -1,0 +1,169 @@
+.page-hero {
+  padding: 48px 0;
+  text-align: center;
+}
+
+.page-hero__title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.page-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.about-section {
+  padding: 0 0 48px;
+}
+
+.about-section__title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.about-section__text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.about-values {
+  padding: 48px 0;
+  background: var(--surface);
+  transition: background-color 0.3s ease;
+}
+
+.about-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.about-card__icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.about-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.about-card__text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.about-team {
+  padding: 48px 0;
+}
+
+.about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.about-team__card {
+  text-align: center;
+}
+
+.about-team__img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.about-team__name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.about-team__role {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 90px 0 32px;
+  }
+
+  .page-hero__title {
+    font-size: 1.625rem;
+  }
+
+  .page-container {
+    padding: 0 16px;
+  }
+
+  .about-section {
+    padding: 0 0 32px;
+  }
+
+  .about-section__title {
+    font-size: 1.375rem;
+  }
+
+  .about-section__text {
+    font-size: 1rem;
+  }
+
+  .about-values {
+    padding: 32px 0;
+  }
+
+  .about-values__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-card {
+    padding: 24px 20px;
+  }
+
+  .about-team {
+    padding: 32px 0;
+  }
+
+  .about-team__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-team__img {
+    width: 180px;
+  }
+}

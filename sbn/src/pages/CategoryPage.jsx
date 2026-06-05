@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import Header from '../components/Header'
 import AnimatedCard from '../components/AnimatedCard'
 import { getArticlesByBadge } from '../data/articles'
 import './CategoryPage.css'
@@ -65,7 +64,6 @@ export default function CategoryPage() {
         <meta property="og:image" content="/icono_favicon.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      <Header />
       <main id="main-content">
         <section className="catpage-hero">
           <div className="container">
