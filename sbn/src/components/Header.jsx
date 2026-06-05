@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { allArticles } from '../data/articles'
 import logo from '../assets/icono_light.png'
 import './Header.css'
+import './MobileHeader.css'
 
 const navCategories = [
   { name: 'Inicio', path: '/' },
@@ -72,6 +73,7 @@ export default function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [openMobileCategory, setOpenMobileCategory] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const [dateStr, setDateStr] = useState('')
   const [searchOpen, setSearchOpen] = useState(false)
@@ -126,10 +128,7 @@ export default function Header() {
     } catch { /* ignore */ }
   }, [isDark])
 
-  useEffect(() => {
-    document.body.style.overflow = (menuOpen || notifOpen) ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen, notifOpen])
+
 
   useEffect(() => {
     if (!menuOpen && !notifOpen) return
@@ -153,7 +152,11 @@ export default function Header() {
   }, [searchOpen])
 
   const toggleTheme = () => setIsDark(p => !p)
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => { setMenuOpen(false); setOpenMobileCategory(null) }
+  const toggleMobileCategory = (categoryName) => {
+    console.log('toggle llamado:', categoryName, 'actual:', openMobileCategory)
+    setOpenMobileCategory(prev => prev === categoryName ? null : categoryName);
+  }
   const openSearch = () => setSearchOpen(p => !p)
   const closeNotif = useCallback(() => setNotifOpen(false), [])
 
@@ -299,11 +302,29 @@ export default function Header() {
         <nav aria-label="Navegación móvil">
           <ul>
             {navCategories.map(cat => (
-              <li key={cat.name}>
-                {cat.path ? (
-                  <Link to={cat.path} className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</Link>
+              <li key={cat.name} className="mobile-nav-item">
+                {cat.subcategories ? (
+                  <>
+                    <div className="mobile-nav-top">
+                      <Link to={cat.path} className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</Link>
+                      <button
+                        className={`mobile-dropdown-toggle${openMobileCategory === cat.name ? ' expanded' : ''}`}
+                        onClick={() => toggleMobileCategory(cat.name)}
+                        aria-label={`${openMobileCategory === cat.name ? 'Colapsar' : 'Expandir'} subcategorías de ${cat.name}`}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                          <path d="M3 4.5L6 7.5L9 4.5" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className={`mobile-sub-list${openMobileCategory === cat.name ? ' expanded' : ''}`}>
+                      {cat.subcategories.map(sub => (
+                        <Link key={sub.name} to={sub.path} className={pathname === sub.path ? 'active' : ''} onClick={closeMenu}>{sub.name}</Link>
+                      ))}
+                    </div>
+                  </>
                 ) : (
-                  <a href="#" className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</a>
+                  <Link to={cat.path} className={activeCat === cat.name ? 'active' : ''} onClick={closeMenu}>{cat.name}</Link>
                 )}
               </li>
             ))}

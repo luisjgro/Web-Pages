@@ -1,12 +1,13 @@
 .catpage-hero {
-  background: linear-gradient(135deg, var(--primary), #115E59);
+  background: linear-gradient(135deg, #0a2080, #04dfd4);
   padding: 80px 0 56px;
   text-align: center;
 }
 
 body.dark-mode .catpage-hero {
-  background: linear-gradient(135deg, #0a5a4f, #0d4d44);
+  background: linear-gradient(135deg, #0f01c7, #d200da);
 }
+
 
 .catpage-hero__title {
   font-family: var(--font-serif);
@@ -115,7 +116,7 @@ body.dark-mode .catpage-hero {
 
 @media (max-width: 767px) {
   .catpage-hero {
-    padding: 64px 0 40px;
+    padding: 90px 0 40px;
   }
 
   .catpage-hero__title {
@@ -133,7 +134,8 @@ body.dark-mode .catpage-hero {
 
   .catpage-tab {
     font-size: 0.8125rem;
-    padding: 10px 14px;
+    padding: 12px 14px;
+    min-height: 44px;
   }
 
   .catpage-grid {
@@ -146,5 +148,16 @@ body.dark-mode .catpage-hero {
     margin: 24px auto 32px;
     width: 100%;
     max-width: 320px;
+    padding: 14px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catpage-hero__title {
+    font-size: 1.5rem;
+  }
+  .catpage-tab {
+    font-size: 0.75rem;
+    padding: 10px 12px;
   }
 }

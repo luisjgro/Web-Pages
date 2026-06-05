@@ -60,19 +60,20 @@
 
 @media (max-width: 767px) {
   .pagination {
-    gap: 8px;
+    gap: 6px;
     margin: 28px auto;
     flex-wrap: wrap;
   }
 
   .pagination__btn {
     font-size: 0.8125rem;
-    padding: 6px 14px;
+    padding: 12px 16px;
+    min-height: 44px;
   }
 
   .pagination__num {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8125rem;
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
   }
 }

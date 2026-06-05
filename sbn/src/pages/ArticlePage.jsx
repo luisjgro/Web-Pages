@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import Header from '../components/Header'
 import NotFound from './NotFound'
 import { getArticleBySlug, getRelatedArticles } from '../data/articles'
@@ -18,8 +19,18 @@ export default function ArticlePage() {
     return <NotFound />
   }
 
+  const helmetTitle = `${article.title} — Solo Buenas Noticias`
+
   return (
     <>
+      <Helmet>
+        <title>{helmetTitle}</title>
+        <meta name="description" content={article.excerpt} />
+        <meta property="og:title" content={helmetTitle} />
+        <meta property="og:description" content={article.excerpt} />
+        <meta property="og:image" content="/icono_favicon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <Header />
       <main id="main-content">
         <article className="article-page">

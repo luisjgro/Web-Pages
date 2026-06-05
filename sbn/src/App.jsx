@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -78,6 +79,14 @@ function HomePage() {
 
   return (
     <>
+      <Helmet>
+        <title>Solo Buenas Noticias — El mundo también tiene historias que valen la pena</title>
+        <meta name="description" content="Noticias positivas, constructivas e inspiradoras de México y el mundo" />
+        <meta property="og:title" content="Solo Buenas Noticias — El mundo también tiene historias que valen la pena" />
+        <meta property="og:description" content="Noticias positivas, constructivas e inspiradoras de México y el mundo" />
+        <meta property="og:image" content="/icono_favicon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <Header />
 
       <main id="main-content">

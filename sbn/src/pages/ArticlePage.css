@@ -103,9 +103,15 @@ body.dark-mode .article-page__related {
   background: var(--surface);
 }
 
+@media (max-width: 480px) {
+  .article-page__title {
+    font-size: 1.375rem;
+  }
+}
+
 @media (max-width: 767px) {
   .article-page {
-    padding: 32px 0 16px;
+    padding: 90px 0 16px;
   }
 
   .article-page__container {
@@ -130,6 +136,15 @@ body.dark-mode .article-page__related {
   .article-page__body {
     font-size: 1rem;
     line-height: 1.7;
+  }
+
+  .article-page__figure {
+    margin-left: calc(-1 * 16px);
+    margin-right: calc(-1 * 16px);
+  }
+
+  .article-page__image {
+    border-radius: 0;
   }
 
   .article-page__related {

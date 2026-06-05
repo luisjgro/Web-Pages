@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import './NotFound.css'
 
 export default function NotFound() {
   return (
+    <>
+      <Helmet>
+        <title>Página no encontrada — Solo Buenas Noticias</title>
+        <meta name="description" content="La página que buscas no existe." />
+        <meta property="og:title" content="Página no encontrada — Solo Buenas Noticias" />
+        <meta property="og:description" content="La página que buscas no existe." />
+        <meta property="og:image" content="/icono_favicon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
     <div className="not-found">
       <div className="not-found__content">
         <span className="not-found__code" aria-hidden="true">404</span>
@@ -17,5 +27,6 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    </>
   )
 }
